@@ -5,8 +5,7 @@
  */
 
 package ejemplos_InOut;
-/**
- *
+/*
  * @author nacho
  */
 public class Aleatorio {

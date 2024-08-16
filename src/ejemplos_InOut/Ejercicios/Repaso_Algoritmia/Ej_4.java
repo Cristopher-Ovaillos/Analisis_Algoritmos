@@ -1,7 +1,5 @@
 package ejemplos_InOut.Ejercicios.Repaso_Algoritmia;
-
 import java.util.Scanner;
-import java.util.Random;
 import ejemplos_InOut.Aleatorio;//importo un archivo, con los metodos que utilizaremos
 public class Ej_4 {
 

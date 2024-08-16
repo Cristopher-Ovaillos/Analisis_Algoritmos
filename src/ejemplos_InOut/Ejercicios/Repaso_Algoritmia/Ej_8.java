@@ -1,4 +1,4 @@
-package ejemplos_InOut;
+package ejemplos_InOut.Ejercicios.Repaso_Algoritmia;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
@@ -17,40 +17,30 @@ import java.util.Scanner;
  * https://docs.oracle.com/javase/7/docs/api/java/util/Scanner.html
  * @author jpinero
  */
-public class Ejemplo_3_Scanner {
-    static final int CANTNUMEROS = 10;
+public class Ej_8 {
+    static final int CANTALUMNOS = 6;
+	static final int CANT_MATERIAS = 5;
     static final int MAX_VALOR = 1000000;
-    static final String NOMBRE_ARCHIVO = "src/ejemplos_InOut/numeros.txt";
+    static final String NOMBRE_ARCHIVO = "src/ejemplos_InOut/Ejercicios/Repaso_algoritmia/notas.txt";
+	static final Alumno[] alumnos= new Alumno[CANTALUMNOS];
 
     private static void leerArchivo_1(){
     	try{
     		BufferedReader buff = new BufferedReader(new FileReader(NOMBRE_ARCHIVO));
     		Scanner s = new Scanner(buff);
-    		for (int i = 0; i < CANTNUMEROS  ; i++){
-    			//System.out.println( Integer.parseInt(buff.readLine()));
-    			System.out.println(s.nextInt());
+    		for (int i = 0; i < CANTALUMNOS  ; i++){
+				
+				float[] nota= new float[CANT_MATERIAS];
+				for (int j = 0; j < CANT_MATERIAS; j++) {
+					nota[j]=s.nextFloat();
+
+				}
+				
+				alumnos[i] = new Alumno(i + 1, nota); 
+    		
     		}
-    		buff.close();
-    	}
-    	catch (FileNotFoundException ex) {
-            System.err.println(ex.getMessage() + "\nSignifica que el archivo del "
-                    + "que queriamos leer no existe.");
-        }
-        catch (IOException ex) {
-            System.err.println("Error leyendo o escribiendo en algun archivo.");
-        }
-    }
 
-    private static void leerArchivo_2(){
-    	try{
-    		BufferedReader buff = new BufferedReader(new FileReader("src/ejemplos_InOut/ejemplo_scanner"));
-    		Scanner s = new Scanner(buff);
-    		//Si falla la lectura del float, cambiar el '.' por coma, cuestion de configuracion de idiomas.
-    		s = new Scanner("123141   4243,433     unaPalabra\no muchas palabras seguidas.");
-
-    		System.out.println("Scanner nos da herramientas comodas para leer datos primitivos de distinto tipo");
-    		System.out.println(s.nextInt() +" " + s.nextFloat() + " " + s.next() + " ");
-    		System.out.println(s.nextLine());
+		
     		buff.close();
     	}
     	catch (FileNotFoundException ex) {
@@ -64,6 +54,8 @@ public class Ejemplo_3_Scanner {
 
 
     public static void main(String[] args) {
+		//System.out.println("Ruta del archivo: " + new java.io.File(NOMBRE_ARCHIVO).getAbsolutePath());
+
     	leerArchivo_1();
     	//leerArchivo_2();
     }

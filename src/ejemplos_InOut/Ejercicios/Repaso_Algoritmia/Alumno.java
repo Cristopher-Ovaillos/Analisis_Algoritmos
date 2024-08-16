@@ -16,6 +16,4 @@ public class Alumno {
     public float[] getNotas() {
         return notas;
     }
-
- 
 }

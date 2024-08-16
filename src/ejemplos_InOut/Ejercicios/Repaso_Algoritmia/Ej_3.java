@@ -1,48 +1,48 @@
 package ejemplos_InOut.Ejercicios.Repaso_Algoritmia;
-
 import java.util.Scanner;
 
 public class Ej_3 {
     
-
-    public static boolean esPrimo(int num) {
-        return num > 1 && (num == 2 || num % 2 != 0 && esPrimo(num, 3));
-    }
-
-
-    private static boolean esPrimo(int num, int divisor) {
-      boolean retornar;
-        if (divisor * divisor > num) {
-            retornar=true;
-        }else{
-
-            retornar=num % divisor != 0 && esPrimo(num, divisor + 2);
+    // metodo para verificar si un num es primo
+    public static boolean esPrimo(int numero) {
+        boolean esPrimo = true;  
+    
+        if (numero <= 1) {
+            esPrimo = false;  
+        } else {
+            int i = 2;
+            //no es necesario verificar todos los posibles divisores [2-numero]
+            //basta con que sea de  [2- raiz cuadrada de (numero)]
+            int cantDivisores = (int) Math.sqrt(numero);
+            while (i <= cantDivisores && esPrimo) {
+                if (numero % i == 0) {
+                    esPrimo = false;  // si es divisor, entonces no es primo
+                }
+                i++;
+            }
         }
-        return retornar;
-
+    
+        return esPrimo; 
     }
+    
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
-        System.out.print("Introduce un número n: ");
+        System.out.print("Ingresa un número n: ");
         int n = scanner.nextInt();
         
-        int conteoPrimos = contarPrimos(n);
+        int contadorPrimos = 0;
         
-        System.out.println("Cantidad de números primos entre 1 y " + n + ": " + conteoPrimos);
-        
-        scanner.close();
-    }
-
-
-    private static int contarPrimos(int n) {
-        int conteo = 0;
+        // Contamos los números primos entre 1 y n
         for (int i = 1; i <= n; i++) {
             if (esPrimo(i)) {
-                conteo++;
+                contadorPrimos++;
             }
         }
-        return conteo;
+        
+        System.out.println("Hay " + contadorPrimos + " numeros primos entre 1 y " + n + ".");
+        
+        scanner.close();
     }
 }
